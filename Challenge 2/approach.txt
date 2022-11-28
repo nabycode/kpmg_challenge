@@ -1,0 +1,27 @@
+We need to write code that will query the meta data of an instance within AWS or Azure or GCP and provide a json formatted output. 
+The choice of language and implementation is up to you.
+
+Bonus Points
+The code allows for a particular data key to be retrieved individually
+Hints
+·         Aws Documentation (https://docs.aws.amazon.com/)
+·         Azure Documentation (https://docs.microsoft.com/en-us/azure/?product=featured)
+·         Google Documentation (https://cloud.google.com/docs)
+
+
+
+
+Here lets consider the cloud provider is Azure cloud.
+
+Lets assume the resources are created using terraform.
+ 1. azure vm
+ 2. azure virtual network and subnets
+ 3. Load Balancers
+
+Now to retrieve all VM information we will be using Azure Instance Metadata Service in powershell.
+we can specifically retrieve any information such as networking, tags, load balancers.
+
+and if we are using any custom data while provisioning the resources in terraform that can also be retrieved using azure IMDS.
+
+
+output example file (example.json) has been attached. We are getting the metadata of our instance in json format as mentioned in the script.

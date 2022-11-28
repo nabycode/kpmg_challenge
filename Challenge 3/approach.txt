@@ -1,0 +1,20 @@
+Challenge 3
+
+We have a nested object. We would like a function where you pass in the object and a key and get back the value. 
+The choice of language and implementation is up to you.
+
+Example Inputs
+object = {“a”:{“b”:{“c”:”d”}}}
+key = a/b/c
+object = {“x”:{“y”:{“z”:”a”}}}
+key = x/y/z
+value = a
+
+
+Here, Lets consider the 3 different key inputs are a/b/c whose values are nested within the object as per the example
+
+Now, using getValueAtPath function we can retrieve the key object value. And if there is null key then return 'no path provided'
+object.key will return an array containing all the keys in a particular object and then try to find that key using find method.
+funtion will call the object recursively until it reaches to the key value.
+
+reference : https://stackoverflow.com/questions/56868197/how-to-create-function-where-you-pass-object-and-key-and-get-back-value-of-neste
