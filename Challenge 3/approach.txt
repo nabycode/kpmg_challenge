@@ -13,7 +13,8 @@ value = a
 
 Here, Lets consider the 3 different key inputs are a/b/c whose values are nested within the object as per the example
 
-Now, using getValueAtPath function we can retrieve the object key value. And no key provided is return when we have empty path as input
+Now, using getValueAtPath function we can retrieve the object key value. 
+And no key provided is return when we have empty path as input
 object.key will return an array containing all the keys in a particular object and then try to find that key using find method.
 funtion will Recursively call itself to find the key and reurn the associated value if key found else return key doesnt exist.
 
