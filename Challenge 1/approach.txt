@@ -1,0 +1,75 @@
+A 3-tier environment is a common setup. Use a tool of your choosing/familiarity create these resources on a cloud environment 
+(Azure/AWS/GCP). Please remember we will not be judged on the outcome but more focusing on the approach, style and reproducibility.
+
+
+
+
+Here we are using Terraform to provision the 3-tier architecture resources.
+
+A 3 tier or multi-tier architecture is basically a application architecture in cloud into 3 logical and physical computing tiers Web tier,
+App tier, database tier. Whereas Web tier is user facing, App tier is where the data will be processed and application funcationality will take place
+Data tier will store and managed the data which is associated with the application.
+
+Resources to be created :
+
+1. Resource Group
+2. Networking
+3. Security Group 
+4. Compute (VM)
+5. Database
+6. Load Balancer (optional)
+7. Storage account for tfstate file backend store (Optional)
+
+In our 3 Tier infrastructure we required :
+
+1. One Vnet with 3 different subnets (Virtual Networking)
+2. 3 different servers or VM (Web,App,DB) in each subnets.
+3. Web server will allow the inbound traffic.
+4. Each tier is also placed inside its own subnet, That makes it easy to apply network security group rules and route tables to individual tiers.
+5. The Web and App tiers are stateless. VMs can handle any request for that tier.
+6. In data tier we will be using SQL server .
+7. if we have multiple VMs for high scalabilty in each subnet we can implement Load balancers to distribute the traffic across VMs.
+8. we can also provision a storage for backend storage of our tfstate file. ( tfstate file is a configuration state file of our resources.)
+
+Terraform Structure :
+
+├── main.tf                   // The primary entrypoint for terraform resources.
+├── vars.tf                   // It contain the declarations for variables.
+├── output.tf                 // It contain the declarations for outputs.
+├── terraform.tfvars          // The file to pass the terraform variables values.
+
+Terraform Module :
+
+A module is a container for multiple resources that are used together. Modules can be used to create lightweight abstractions, so that you can describe your infrastructure in terms of its architecture, rather than directly in terms of physical objects.
+All the stacks are placed in the modules folder and the variable are stored under terraform.tfvars
+
+To run the code you need to append the variables in the terraform.tfvars
+Each module consists minimum two files: main.tf, vars.tf
+resourcegroup and networking modules consists of one extra file named output.tf
+
+Deployment :
+
+For Deployment we can use Azure pipelines. Using Service Connection we can connect to our github and get our sourcecode. 
+In the azure pipeline we can add terraform tasks (init, plan, apply, Validate, Destry)
+
+terraform init - used to initialize a working directory containing Terraform configuration files
+
+terraform plan - used to create an execution plan
+
+terraform validate - validates the configuration files in a directory, referring only to the configuration and not accessing any remote services such as remote state, provider APIs, etc
+
+terraform apply - used to apply the changes required to reach the desired state of the configuration.
+
+
+(Sample terraform code has been attached for linux VMs)
+
+Reference : https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier
+
+
+
+
+
+
+
+
+
